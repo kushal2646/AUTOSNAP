@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1 Book Your Service
+
+  form(action='/appointment', method='get')
+    .form-group
+      label(for='name') Name:
+      input#name(type='text', name='name', placeholder='Enter your full name', required)
+
+    .form-group
+      label(for='email') Email Id:
+      input#email(type='email', name='email', placeholder='your.email@example.com', required)
+
+    .form-group
+      label(for='phone') Phone Number:
+      input#phone(type='tel', name='phone', placeholder='e.g. 9823322332', required)
+
+    .form-group
+      label(for='service') Select Service:
+      select#service(name='service', required)
+        option(value='Preventive Maintenance Service') Preventive Maintenance Service
+        option(value='Car Care Service') Car Care Service
+        option(value='Body Repair Service') Body Repair Service
+
+    .form-group
+      label(for='carMake') Car Make:
+      input#carMake(type='text', name='carMake', placeholder='Suzuki, Toyota...', required)
+
+    .form-group
+      label(for='carModel') Car Model:
+      input#carModel(type='text', name='carModel', placeholder='Alto, Innova...', required)
+
+    .form-group
+      label Fuel Type:
+      .radio-group
+        input#petrol(type='radio', name='fuelType', value='Petrol', required)
+        label(for='petrol') Petrol
+        input#diesel(type='radio', name='fuelType', value='Diesel')
+        label(for='diesel') Diesel
+        input#lpg(type='radio', name='fuelType', value='LPG')
+        label(for='lpg') LPG
+        input#others(type='radio', name='fuelType', value='Others')
+        label(for='others') Others
+
+    .form-group
+      label(for='kilometersRan') Kilometers Ran:
+      input#kilometersRan(type='number', name='kilometersRan', placeholder='e.g. 12000', required)
+
+    .form-group
+      button(type='submit') Schedule an Appointment

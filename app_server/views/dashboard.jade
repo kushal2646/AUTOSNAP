@@ -1,0 +1,51 @@
+extends layout
+
+block content
+  h1 Dashboard
+  p Welcome to your AutoSnap dashboard. Here you can manage your appointments, view service history, and track vehicle maintenance.
+
+  section
+    h2 Upcoming Appointments
+    if typeof appointments !== 'undefined' && appointments.length
+      ul
+        each appt in appointments
+          li #{appt.date} - #{appt.type} at #{appt.location}
+    else
+      p No upcoming appointments yet.
+
+  section
+    h2 Service History
+    if typeof serviceRecords !== 'undefined' && serviceRecords.length
+      ul
+        each record in serviceRecords
+          li #{record.date} - #{record.details}
+    else
+      p No records available.
+
+  section
+    h2 Vehicle Maintenance
+    ul
+      li
+        | Oil Change: 
+        | 
+        | <progress value="20" max="100"></progress>
+        | Next due in 3000 km
+      li
+        | Battery Health: 
+        | 
+        | <progress value="80" max="100"></progress>
+        | Good
+      li
+        | Tire Wear: 
+        | 
+        | <progress value="60" max="100"></progress>
+        | Check soon
+
+  section
+    h2 Notifications
+    if typeof notifications !== 'undefined' && notifications.length
+      ul
+        each note in notifications
+          li #{note.type} - #{note.message}
+    else
+      p You have no new notifications.
