@@ -1,5 +1,42 @@
 extends layout
 
 block content
-  h1 Services Page
-  p Welcome to AutoSnap services!
+  // Introductory Text 
+  .row
+    .col-12
+      h3 Our Services
+      p Our representatives are professionally trained and skilled with latest and futuristic techniques to provide a best quality service.
+      p At AutoMob-Mechanic, we provide a high class service to the customers for their happy and memorable driving experience.
+
+  // The single row containing all three service blocks
+  .row.text-center.mt-4 
+    
+    // 1. --- Body Repair Service Block ---
+    .col-md-4.mb-4
+      // ⭐️ IMAGE ADDED HERE ⭐️
+      img.img-fluid(src='/images/body_repair_isometric.png', alt='Body Repair Service', style='max-width: 75%; height: auto;')
+      
+      h5.mt-2 BODY REPAIR SERVICE
+      p Full chassis body repair provided by the experts.
+      a.btn.btn-danger(href='/body-repair-service/') MORE DETAILS
+      p.small.text-danger Offer: 10% Off 
+
+    // 2. --- Car Care Service Block ---
+    .col-md-4.mb-4
+      // ⭐️ IMAGE ADDED HERE ⭐️
+      img.img-fluid(src='/images/car_care_illustration.png', alt='Car Care Service', style='max-width: 75%; height: auto;')
+      
+      h5.mt-2 CAR CARE SERVICE
+      p Get your car sparkling clean in just minutes.
+      a.btn.btn-danger(href='/car-care-service/') MORE DETAILS
+      p.small.text-danger Offer: 15% Off
+      
+    // 3. --- Preventive Maintenance Service Block ---
+    .col-md-4.mb-4
+      // ⭐️ IMAGE ADDED HERE ⭐️
+      img.img-fluid(src='/images/preventive.png', alt='Preventive Maintenance')
+      
+      h5.mt-2 PREVENTIVE MAINTENANCE SERVICE
+      p Periodically check and keep your car running.
+      a.btn.btn-danger(href='/preventive-maintenance-service/') MORE DETAILS
+      p.small.text-danger Offer: 20% Off

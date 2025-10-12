@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  .row
+    .col-12
+      h1 Preventive Maintenance Service
+  .row
+    .col-md-6
+      // Use a relevant image for Preventive Maintenance (e.g., checking fluids/engine)
+      img.img-fluid(src='/images/preventive_maintenance_check.jpg', alt='Preventive Maintenance Service') 
+    .col-md-6
+      p Looking to keep your car functioning smoothly? Save money and opt for AutoMob-Mechanic's periodic maintenance service. This service aims at:
+      ul
+        li Air filter replacement.
+        li Engine oil replacement.
+        li Brake pad cleaning/replacement.
+      
+      // Button to book the service, linking to the '/booking' page
+      a.btn.btn-primary(href='/booking') Book Service

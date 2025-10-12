@@ -7,16 +7,40 @@ html
     link(rel='stylesheet', href='/stylesheets/all.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
-
-    script(
-      src='https://code.jquery.com/jquery-3.3.1.slim.min.js',
-      integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo',
-      crossorigin='anonymous'
-    )
-    script(
-      src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js',
-      integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49',
-      crossorigin='anonymous'
-    )
+    nav.navbar.fixed-top.navbar-expand-md.navbar-light
+      .container
+        a.navbar-brand(href='/') AUTOSNAP
+        button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarMain')
+          span.navbar-toggler-icon
+        #navbarMain.navbar-collapse.collapse
+          ul.navbar-nav.mr-auto
+            // Existing 'About' Link
+            li.nav-item
+              a.nav-link(href='/about/') About
+            
+            // --- NEW LINKS ---
+            li.nav-item
+              a.nav-link(href='/dashboard/') Dashboard
+            li.nav-item
+              a.nav-link(href='/services/') Services
+            li.nav-item
+              a.nav-link(href='/booking/') Booking
+            // --- END NEW LINKS ---
+            
+    .container.content
+      block content
+      
+    footer
+      .row
+        .col-12
+          // Note: The footer section is outside the .container.content block.
+          small © Getting MEAN – AUTOSNAP TEAM S(2025)
+          
+    //- JavaScript/jQuery/Bootstrap includes
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', 
+      integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', 
+      crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js', 
+      integrity='sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49', 
+      crossorigin='anonymous')
     script(src='/javascripts/bootstrap.min.js')

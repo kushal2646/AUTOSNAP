@@ -1,0 +1,20 @@
+extends layout
+
+block content
+  .row
+    .col-12
+      h1 Car Care Service
+  .row
+    .col-md-6
+      // Use a relevant image for Car Care (e.g., car washing or polishing)
+      img.img-fluid(src='/images/car_care_detail_wash.jpg', alt='Car Care Service') 
+    .col-md-6
+      p Looking to keep your car neat and clean? Save money and opt for AutoMob-Mechanic's car care service. We offer an extensive range of car wash and cleaning services such as:
+      ul
+        li Basic car washing and vacuuming.
+        li Detailed interior and upholstery cleaning.
+        li Protective coating.
+        li Dashboard polishing.
+      
+      // Button to book the service, linking to the '/booking' page
+      a.btn.btn-primary(href='/booking') Book Service
