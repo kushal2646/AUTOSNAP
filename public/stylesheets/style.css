@@ -162,3 +162,35 @@ a:hover {
     50% { transform: scale(1.02); opacity: 0.95; }
     100% { transform: scale(1); opacity: 1; }
 }
+/* --- Centering Styles for the Home Page --- */
+
+/* Get the container to take up the space below the header */
+.center-content {
+    /* Use Flexbox for easy centering */
+    display: flex;
+    flex-direction: column; /* Stack logo and text vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+    
+    /* Calculate height to fill the screen (100% of viewport height - header height) */
+    /* **NOTE:** You may need to adjust the 80px based on your actual header height. */
+    min-height: calc(100vh - 80px); 
+    padding-top: 20px; /* Small buffer from the header */
+}
+
+/* Style for the Logo */
+.logo-center {
+    /* Adjust this width for the size you want the logo to appear */
+    width: 300px; 
+    height: auto;
+    margin-bottom: 25px; /* Space between logo and text */
+}
+
+/* Style for the Welcome Text */
+.welcome-title {
+    font-size: 2.5em; /* Make the text large and prominent */
+    color: #333; /* Dark color for readability */
+    letter-spacing: 2px;
+    font-weight: 700;
+}

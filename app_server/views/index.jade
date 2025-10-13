@@ -1,5 +1,11 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+    // This div will serve as the center container for everything below the navigation bar
+    .center-content
+        // Logo Image - Adjust the path and size as necessary
+        // Assuming your logo is saved in: public/images/autosnap-logo.png
+        img(src='/images/Gemini_Generated_Image_rrfhybrrfhybrrfh.png', alt='AutoSnap Workshop Logo').logo-center-small
+
+        // Welcome Text
+        h1.welcome-title WELCOME TO AUTOSNAP

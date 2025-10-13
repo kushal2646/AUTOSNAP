@@ -1,8 +1,18 @@
 extends layout
 
 block content
-  h1 Booking Success 🎉
-  p Thank you for booking your service with AutoSnap.
-  p We will contact you soon with the details via email or phone.
-  img(src='/images/thank-you.svg', alt='Thank You Illustration', width='400')
-  a(href='/', class='btn') Back to Home
+  .row.text-center.py-5
+    .col-12
+      // Using Bootstrap display classes for large text
+      h1.display-4 Booking Confirmed! 🎉
+      
+      p.lead Thank you for booking your service with AutoSnap.
+      p We will contact you soon with the details via email or phone.
+      
+      // Image as shown in your prompt
+      img.my-4(src='/images/thank-you.svg', alt='Thank You Illustration', style='max-width: 300px;')
+      
+      // Link back to the home page or dashboard
+      a.btn.btn-lg.btn-primary(href='/') Back to Home
+      
+      // NOTE: The copyright should be handled by the footer in layout.pug.
