@@ -1,18 +1,33 @@
 extends layout
 
 block content
-  .row.text-center.py-5
-    .col-12
-      // Using Bootstrap display classes for large text
-      h1.display-4 Booking Confirmed! 🎉
+  .container.py-5.text-center
+    // Main Card Container for Confirmation
+    .card.shadow-lg.border-0.p-4.p-md-5.mx-auto(style='max-width: 700px;')
       
-      p.lead Thank you for booking your service with AutoSnap.
-      p We will contact you soon with the details via email or phone.
+      // Confirmation Header
+      h1.display-3.text-success.mb-3
+        | BOOKING SUCCESS! 🎉
       
-      // Image as shown in your prompt
-      img.my-4(src='/images/thank-you.svg', alt='Thank You Illustration', style='max-width: 300px;')
+      // Simplified Message with Customer Name
+      p.lead.text-muted.mb-4
+        // FIX: Reverting to the most robust typeof check to avoid ReferenceError
+        | Thank you, #[strong #{typeof name !== 'undefined' ? name : 'Customer'}], for scheduling your service with AutoSnap.
       
-      // Link back to the home page or dashboard
-      a.btn.btn-lg.btn-primary(href='/') Back to Home
+      // Secondary reassurance
+      p.mb-5
+        | Your appointment is confirmed! We will contact you soon with the final details via email or phone.
+        | You can track your booking status on your dashboard.
       
-      // NOTE: The copyright should be handled by the footer in layout.pug.
+      // Action Buttons 
+      .d-grid.gap-2.col-md-8.mx-auto
+        // Back to Home
+        a(href='/').btn.btn-warning.btn-lg.fw-bold.mb-3 BACK TO HOME
+
+        // View Dashboard
+        a(href='/dashboard').btn.btn-outline-primary.btn-md VIEW YOUR DASHBOARD
+        
+    // Footer note
+    .mt-4.text-center
+      p.text-sm.text-muted.mb-0
+        | We look forward to servicing your vehicle!

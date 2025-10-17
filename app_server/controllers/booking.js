@@ -30,3 +30,8 @@ module.exports = {
   processAndShowSuccess,
   bookingSuccessPage 
 };
+// Example of how your controller needs to be structured:
+
+// D:\autosnap\AUTOSNAP\app_server\controllers\booking.js
+// This is the controller function that processes the form submission (e.g., booking.js)
+

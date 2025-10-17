@@ -8,7 +8,9 @@ module.exports.servicesList = (req, res) => {
 
 module.exports.dashboard = (req, res) => {
   res.render('dashboard', { title: 'Dashboard' });
+  
 };
+
 
 
 module.exports.bookingPage = (req, res) => {

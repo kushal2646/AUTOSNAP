@@ -182,7 +182,7 @@ a:hover {
 /* Style for the Logo */
 .logo-center {
     /* Adjust this width for the size you want the logo to appear */
-    width: 300px; 
+    width: 500px; 
     height: auto;
     margin-bottom: 25px; /* Space between logo and text */
 }
@@ -194,3 +194,63 @@ a:hover {
     letter-spacing: 2px;
     font-weight: 700;
 }
+/* 1. Making the Logo Small - REVISED */
+.small-logo {
+    max-width: 500px; /* Much smaller width, adjust as needed */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Essential for 'margin: auto' to center */
+    margin: 30px auto; /* Centers the logo horizontally with space */
+    /* If the logo itself is very high resolution, you might need to manage its actual pixel dimensions too. */
+}
+
+/* 2. Setting up the Photo Queue Container */
+.photo-queue-container {
+    display: flex;
+    justify-content: center; /* Center the queue */
+    align-items: center; /* Vertically center items in the container */
+    overflow: hidden; /* Important for animation or clipping */
+    perspective: 800px; /* Key for the 3D side-view effect */
+    height: 180px; /* Increased height to give photos more room */
+    margin-top: 20px;
+    position: relative; /* For absolute positioning of elements if needed */
+}
+
+/* 3. Styling the Photo Queue Items (the "photos") - REVISED */
+.photo-queue-item {
+    width: 120px; /* Width of each "photo" */
+    height: 90px; /* Height of each "photo" */
+    background-color: #f0f0f0; /* Light background for placeholder */
+    border: 1px solid #aaa; /* Subtle border */
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Soft shadow for depth */
+    margin: 0 10px; /* Space between photos */
+    display: flex; /* To center potential content inside */
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em; /* Smaller text if you add labels */
+    color: #555;
+    /* Apply a slight rotation for the side-view effect */
+    transform: rotateY(15deg) scale(0.9); /* Reduced rotation, slight scale down */
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition */
+    flex-shrink: 0; /* Prevent items from shrinking */
+    /* To make them look like photos, you'd eventually replace background-color
+       with 'background-image: url("path/to/image.jpg"); background-size: cover;' */
+}
+
+/* 4. Adding Animation (More refined conceptual CSS Animation) */
+/* This will make the queue items continuously slide from right to left */
+.photo-queue-container {
+    /* Define an animation name */
+    animation: slide-queue 20s infinite linear; /* Slower, continuous animation */
+}
+
+/* Keyframes for the sliding animation */
+@keyframes slide-queue {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); } /* Adjust based on number of items and container width */
+}
+
+/* You might want to animate individual items within the queue,
+   or duplicate items to create a seamless loop effect.
+   For simplicity, the above animates the whole container.
+   If you want individual items to "move into view", you would
+   need JavaScript or more complex CSS keyframe management for each item. */

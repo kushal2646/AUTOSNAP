@@ -1,51 +1,129 @@
 extends layout
 
 block content
-  h1 Dashboard
-  p Welcome to your AutoSnap dashboard. Here you can manage your appointments, view service history, and track vehicle maintenance.
+  // Header and Greeting
+  .container-fluid.py-4
+    h1.display-4.text-primary Dashboard
+    p.lead.text-muted Welcome back! Here you can manage your appointments, view service history, and track your vehicle's maintenance.
 
-  section
-    h2 Upcoming Appointments
-    if typeof appointments !== 'undefined' && appointments.length
-      ul
-        each appt in appointments
-          li #{appt.date} - #{appt.type} at #{appt.location}
-    else
-      p No upcoming appointments yet.
+    // Main Content Grid (Appointments & Maintenance in a two-column layout)
+    .row.g-4.mt-3
 
-  section
-    h2 Service History
-    if typeof serviceRecords !== 'undefined' && serviceRecords.length
-      ul
-        each record in serviceRecords
-          li #{record.date} - #{record.details}
-    else
-      p No records available.
+      // Column 1: Appointments & Notifications
+      .col-lg-5
+        // Upcoming Appointments Card
+        .card.shadow-sm.mb-4
+          .card-header.bg-primary.text-white
+            h2.card-title.h4 Upcoming Appointments
+          .card-body
+            if typeof appointments !== 'undefined' && appointments.length
+              ul.list-group.list-group-flush
+                each appt in appointments
+                  // Removed appt.id to avoid potential undefined error if not passed
+                  li.list-group-item
+                    strong Date:
+                    | #{appt.date} -
+                    strong Type:
+                    | #{appt.type} at
+                    strong Location:
+                    | #{appt.location}
+                    // Simplified link to a placeholder, since appt.id might be undefined
+                    a(href='/booking/edit/').btn.btn-sm.btn-outline-primary.float-end Manage 
+            else
+              .alert.alert-info.mb-0(role='alert')
+                | You have no upcoming appointments. Ready for a service? 
+                a(href='/booking').alert-link Book Now.
 
-  section
-    h2 Vehicle Maintenance
-    ul
-      li
-        | Oil Change: 
-        | 
-        | <progress value="20" max="100"></progress>
-        | Next due in 3000 km
-      li
-        | Battery Health: 
-        | 
-        | <progress value="80" max="100"></progress>
-        | Good
-      li
-        | Tire Wear: 
-        | 
-        | <progress value="60" max="100"></progress>
-        | Check soon
+        // Notifications Card
+        .card.shadow-sm
+          .card-header.bg-light
+            h2.card-title.h4 Notifications
+          .card-body
+            if typeof notifications !== 'undefined' && notifications.length
+              ul.list-group.list-group-flush
+                each note in notifications
+                  // Removed note.type and note.message to avoid potential undefined error if structure changed
+                  li.list-group-item.list-group-item-warning
+                    strong New Alert:
+                    | #{note.message}
+            else
+              p.text-success.mb-0 You have no new notifications. Everything looks good!
 
-  section
-    h2 Notifications
-    if typeof notifications !== 'undefined' && notifications.length
-      ul
-        each note in notifications
-          li #{note.type} - #{note.message}
-    else
-      p You have no new notifications.
+      // Column 2: Vehicle Maintenance & Quick Links
+      .col-lg-7
+        // Vehicle Maintenance Card
+        .card.shadow-sm.mb-4
+          .card-header.bg-success.text-white
+            h2.card-title.h4 Vehicle Maintenance Status
+          .card-body
+            ul.list-group.list-group-flush
+              // Oil Change - NOW USES STATIC VALUE
+              li.list-group-item
+                .d-flex.justify-content-between.align-items-center
+                  strong Oil Change:
+                  span Next due in 
+                    strong 3000 km
+                .progress.mt-1
+                  // ERROR FIXED: Reverted to the static '20' value from your original image/code
+                  progress.progress-bar.bg-warning(value="20", max="100") 
+              
+              // Battery Health - NOW USES STATIC VALUE
+              li.list-group-item
+                .d-flex.justify-content-between.align-items-center
+                  strong Battery Health:
+                  span.badge.bg-success Good
+                .progress.mt-1
+                  // ERROR FIXED: Reverted to the static '80' value
+                  progress.progress-bar.bg-success(value="80", max="100")
+
+              // Tire Wear - NOW USES STATIC VALUE
+              li.list-group-item
+                .d-flex.justify-content-between.align-items-center
+                  strong Tire Wear:
+                  span.text-danger Check soon
+                .progress.mt-1
+                  // ERROR FIXED: Reverted to the static '60' value
+                  progress.progress-bar.bg-danger(value="60", max="100")
+            
+            .text-end.mt-3
+                a(href='/services/preventive-maintenance').btn.btn-primary.btn-sm View Full Details
+
+        // AutoSnap Quick Links & Information
+        .card.shadow-sm
+          .card-header.bg-info.text-white
+            h2.card-title.h4 AutoSnap Resources
+          .card-body
+            .row
+              .col-md-6.mb-3
+                a(href='/services').btn.btn-outline-primary.w-100.py-3
+                  // NOTE: Placeholder for Font Awesome icons. You may need to replace or remove these
+                  i.fas.fa-wrench.me-2 
+                  | Explore Our Services
+            
+
+    // Service History Section (Full Width)
+    .row.mt-5
+      .col-12
+        .card.shadow
+          .card-header.bg-light
+            h2.card-title.h4 Service History
+          .card-body
+            if typeof serviceRecords !== 'undefined' && serviceRecords.length
+              .table-responsive
+                table.table.table-hover
+                  thead
+                    tr
+                      th Date
+                      th Service Details
+                      th Location
+                      th Cost
+                  tbody
+                    // Using default values for Location and Cost to prevent ReferenceError if data structure is missing them
+                    each record in serviceRecords
+                      tr
+                        td #{record.date}
+                        td #{record.details}
+                        td #{record.location || 'N/A'} 
+                        td #{record.cost || 'N/A'}
+            else
+              p.text-muted.mb-0 No records available. Your service history will appear here after your first appointment.

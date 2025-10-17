@@ -1,11 +1,73 @@
 extends layout
 
 block content
-    // This div will serve as the center container for everything below the navigation bar
-    .center-content
-        // Logo Image - Adjust the path and size as necessary
-        // Assuming your logo is saved in: public/images/autosnap-logo.png
-        img(src='/images/Gemini_Generated_Image_rrfhybrrfhybrrfh.png', alt='AutoSnap Workshop Logo').logo-center-small
+  .container.py-5
+    // Hero Section: Large Welcome Title
+    .text-center.mb-5
+      h1.display-4.welcome-title.fw-bold.text-primary WELCOME TO AUTOSNAP
+      p.lead.text-muted Your trusted partner for seamless vehicle maintenance.
 
-        // Welcome Text
-        h1.welcome-title WELCOME TO AUTOSNAP
+    // Center Content (Logo & Image/Illustrations)
+    .text-center.mb-5
+      // Logo/Brand Image
+      img.small-logo.d-block.mx-auto(src='/images/Gemini_Generated_Image_rrfhybrrfhybrrfh.png', alt='AutoSnap Workshop Logo', style='max-width: 250px;')
+
+    // --- UNIQUE FEATURE: VIRTUAL CAR HEALTH METER ---
+    // This element is visually unique and encourages interaction
+    .card.shadow-lg.p-4.mb-5.bg-light
+      .row.align-items-center
+        .col-md-5.text-md-end.text-center
+          h2.h3.fw-bold.text-danger Check Your Car's Vitals
+          p.text-muted.mb-md-0 Use our free tool to estimate your next maintenance needs.
+
+        .col-md-7
+          // The Health Meter Visualization
+          .health-meter.d-flex.justify-content-center.align-items-center.p-3
+            .meter-dial.rounded-circle.shadow-sm.bg-white(style='width: 150px; height: 150px; border: 10px solid #ccc; position: relative;')
+              // Center Indicator
+              .indicator.bg-warning.rounded-circle(style='width: 10px; height: 10px; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);')
+              // Simple text "Gauge"
+              .text-center.fw-bold.h5.mt-5.pt-2.text-success.text-nowrap 85% Healthy
+            
+            // Call to Action
+            .meter-action.ms-4
+              a(href='/dashboard').btn.btn-lg.btn-primary.shadow-sm Check Dashboard
+              p.small.mt-2.text-muted See detailed maintenance history
+
+    // --- KEY SERVICE FRAMES ---
+    // Using frames/cards to highlight what you offer
+    .row.g-4.text-center
+      
+      // Frame 1: Preventive Maintenance
+      .col-md-4
+        .card.h-100.shadow-sm.border-success
+          .card-body
+            i.fas.fa-wrench.fa-3x.text-success.mb-3 
+            h3.h5.card-title.fw-bold Preventive Maintenance
+            p.card-text Keep your vehicle running smoothly and safely.
+            a(href='/services/preventive-maintenance').btn.btn-sm.btn-outline-success Explore
+
+      // Frame 2: Body & Repair
+      .col-md-4
+        .card.h-100.shadow-sm.border-warning
+          .card-body
+            i.fas.fa-car-crash.fa-3x.text-warning.mb-3
+            h3.h5.card-title.fw-bold Body & Collision Repair
+            p.card-text Expert service to restore your vehicle's look and integrity.
+            a(href='/services/body-repair').btn.btn-sm.btn-outline-warning Explore
+
+      // Frame 3: Car Care & Detailing
+      .col-md-4
+        .card.h-100.shadow-sm.border-info
+          .card-body
+            i.fas.fa-spray-can.fa-3x.text-info.mb-3
+            h3.h5.card-title.fw-bold Car Care & Detailing
+            p.card-text Make your car look brand new with our premium wash and detail services.
+            a(href='/services/car-care').btn.btn-sm.btn-outline-info Explore
+
+    // --- BOOKING CALL TO ACTION ---
+    .text-center.mt-5
+      h2.h3 Ready to book?
+      a(href='/booking').btn.btn-lg.btn-danger.shadow-lg.mt-2 BOOK YOUR SERVICE NOW
+
+        
