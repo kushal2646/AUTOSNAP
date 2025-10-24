@@ -1,81 +1,115 @@
-/* ----------------------------------------------------------------
- * 1. FONTS AND GLOBAL SETUP (Modern, Clean Look)
- * ---------------------------------------------------------------- */
+/* ========================================================================
+ * 1. GLOBAL STYLES — Modern, Elegant & Depth-Based Aesthetic
+ * ======================================================================== */
 
-/* Replace previous fonts with a professional, modern set */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
+/* Google Fonts: Mixing Professional Sans + Stylish Display */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Rajdhani:wght@500;700&display=swap');
 
-/* Base font for all body text */
+:root {
+    --brand-blue: #0d47a1;
+    --accent-blue: #2196f3;
+    --gold-accent: #ffc107;
+    --text-dark: #2c2c2c;
+    --text-light: #f5f5f5;
+    --bg-main: #eef2f7;
+    --bg-card: #ffffff;
+    --shadow-soft: 0 8px 24px rgba(0, 0, 0, 0.08);
+    --shadow-strong: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+/* Universal Reset + Smooth Interactions */
+* {
+    box-sizing: border-box;
+    transition: all 0.25s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: 'Roboto', Arial, sans-serif;
-    color: #333; /* Darker text for readability */
-    background-color: #f0f2f5; /* Light, clean background */
-    margin-top: 56px; /* Space for the fixed navbar */
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    background: var(--bg-main);
+    margin-top: 60px;
+    line-height: 1.6;
 }
 
-/* Headings use a bold, angular font */
+/* Headings – Sharp, Futuristic Look */
 h1, h2, h3, h4, h5, h6, legend {
-    font-family: 'Oswald', sans-serif;
-    color: #0d47a1; /* Deep Corporate Blue */
+    font-family: 'Rajdhani', sans-serif;
+    color: var(--brand-blue);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
 }
 
-/* Links across the application */
+/* Link Styling – Animated Gradient Underline */
 a {
-    color: #0d47a1;
-    transition: color 0.3s ease-in-out;
+    position: relative;
+    color: var(--brand-blue);
+    font-weight: 500;
+}
+a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background: linear-gradient(90deg, var(--brand-blue), var(--accent-blue));
+    transition: width 0.3s ease;
+}
+a:hover::after {
+    width: 100%;
 }
 a:hover {
-    color: #1e88e5;
-    text-decoration: none;
+    color: var(--accent-blue);
 }
 
-/* Main Content Area (Light Background for Contrast) */
+/* Main Content Container */
 .container.content {
-    background-color: #ffffff; 
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    padding: 30px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    animation: fadeIn 1s ease-out;
+    background: var(--bg-card);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    padding: 40px;
+    margin: 30px auto;
+    animation: fadeIn 0.8s ease-out;
 }
 
-/* ----------------------------------------------------------------
- * 2. NAVBAR (Professional and Fixed)
- * ---------------------------------------------------------------- */
+/* ------------------------------------------------------------------------
+ * 2. NAVBAR — Glassmorphism & Glow Accents
+ * ------------------------------------------------------------------------ */
 
 .navbar {
-    /* Deep blue primary brand color */
-    background-color: #0d47a1; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: background-color 0.4s;
-    /* Animation: Navbar subtly shifts color on scroll (Requires JS/Scroll Listener) */
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(13, 71, 161, 0.85);
+    backdrop-filter: blur(10px);
+    box-shadow: var(--shadow-strong);
+    transition: all 0.4s ease;
+    z-index: 999;
 }
 
-/* Brand/Logo Style */
 .navbar-light .navbar-brand {
-    font-family: 'Oswald', sans-serif;
-    color: #ffffff !important; 
-    font-size: 1.8rem;
+    font-family: 'Rajdhani', sans-serif;
+    color: #fff !important;
+    font-size: 2rem;
+    letter-spacing: 2px;
     font-weight: 700;
-    transition: transform 0.3s;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
 }
 .navbar-light .navbar-brand:hover {
-    transform: scale(1.05); /* Unique hover animation */
+    transform: scale(1.07);
 }
 
 /* Navigation Links */
 .navbar-light .navbar-nav .nav-link {
-    color: #ffffff !important;
-    font-weight: 500;
-    margin: 0 10px;
+    color: #fff !important;
+    font-weight: 600;
+    letter-spacing: 0.5px;
     position: relative;
-    padding-bottom: 5px;
 }
-
-/* Underline Animation */
 .navbar-light .navbar-nav .nav-link::after {
     content: '';
     position: absolute;
@@ -83,174 +117,161 @@ a:hover {
     height: 2px;
     bottom: 0;
     left: 0;
-    background-color: #1e88e5; /* Lighter blue accent */
-    transition: width 0.3s ease-out;
+    background: var(--gold-accent);
+    transition: width 0.3s ease;
 }
-.navbar-light .navbar-nav .nav-link:hover::after,
-.navbar-light .navbar-nav .nav-link.active::after {
+.navbar-light .navbar-nav .nav-link:hover::after {
     width: 100%;
 }
 
-/* Toggler Icon (for mobile) */
+/* Toggler */
 .navbar-light .navbar-toggler {
-    border-color: #ffffff;
+    border: none;
 }
 .navbar-light .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='white' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    filter: invert(100%);
 }
 
-/* ----------------------------------------------------------------
- * 3. SERVICE BLOCKS AND BUTTONS (Modern Card Design)
- * ---------------------------------------------------------------- */
+/* ------------------------------------------------------------------------
+ * 3. CARDS / SERVICE BLOCKS — Depth, Glow, and Hover Energy
+ * ------------------------------------------------------------------------ */
 
 .card {
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    padding: 0; /* Bootstrap card handles padding inside body/footer */
+    background: var(--bg-card);
+    border: none;
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
 }
-
-/* Unique Hover Animation for Service Blocks */
+.card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, rgba(33,150,243,0.1), transparent 70%);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.card:hover::before {
+    opacity: 1;
+}
 .card:hover {
-    transform: translateY(-5px); /* Lift card slightly */
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-strong);
 }
 
-/* Styling for the service block on the services list page */
-.service-block .card-body {
-    text-align: center;
-}
-
-/* Primary Buttons (Booking, More Details) */
+/* Buttons */
 .btn-primary, .btn-danger {
-    background-color: #ffc107; /* Bright Yellow/Gold Accent */
-    border-color: #ffc107;
-    color: #333 !important; /* Ensure text is dark and readable */
+    background: linear-gradient(135deg, #ffd740, #ffb300);
+    border: none;
+    color: #212121 !important;
     font-weight: 700;
     text-transform: uppercase;
-    transition: background-color 0.3s, transform 0.3s;
+    border-radius: 50px;
+    padding: 10px 25px;
+    box-shadow: 0 4px 8px rgba(255, 193, 7, 0.4);
 }
-
 .btn-primary:hover, .btn-danger:hover {
-    background-color: #ffb300;
-    border-color: #ffb300;
-    transform: scale(1.05); /* Subtle press effect */
+    background: linear-gradient(135deg, #ffb300, #ffa000);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(255, 179, 0, 0.6);
 }
 
-/* Offer Text */
+/* Offer Highlight */
 .text-danger {
-    color: #ff6e40 !important; /* Soft orange/coral for offers */
+    color: #ff7043 !important;
     font-weight: 700;
-    animation: pulse 1.5s infinite; /* Subtle animation for attention */
+    animation: pulseGlow 1.8s infinite;
 }
 
-/* ----------------------------------------------------------------
- * 4. KEYFRAMES FOR ANIMATIONS
- * ---------------------------------------------------------------- */
+/* ------------------------------------------------------------------------
+ * 4. HOME PAGE CENTERING & PHOTO QUEUE — Refined 3D Motion
+ * ------------------------------------------------------------------------ */
 
-/* Fading in the main content when loaded */
+.center-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 80px);
+    text-align: center;
+    background: linear-gradient(135deg, #e3f2fd, #f0f2f5);
+    border-radius: 16px;
+    box-shadow: var(--shadow-soft);
+}
+
+.logo-center, .small-logo {
+    max-width: 380px;
+    height: auto;
+    margin-bottom: 20px;
+    animation: floatLogo 4s ease-in-out infinite;
+}
+
+.welcome-title {
+    font-size: 2.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--brand-blue);
+    text-shadow: 0 0 10px rgba(33,150,243,0.3);
+}
+
+/* Photo Queue */
+.photo-queue-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    perspective: 1000px;
+    height: 160px;
+    margin-top: 20px;
+}
+
+.photo-queue-item {
+    width: 130px;
+    height: 90px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    margin: 0 15px;
+    transform: rotateY(10deg) scale(0.95);
+    filter: brightness(0.9);
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+.photo-queue-item:hover {
+    transform: rotateY(0deg) scale(1.05);
+    filter: brightness(1);
+}
+
+/* Animation: Continuous subtle slide */
+@keyframes slide-queue {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.photo-queue-container {
+    animation: slide-queue 25s linear infinite;
+}
+
+/* ------------------------------------------------------------------------
+ * 5. KEYFRAMES
+ * ------------------------------------------------------------------------ */
+
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
+    from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Subtle pulse for the discount offer */
-@keyframes pulse {
-    0% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.02); opacity: 0.95; }
-    100% { transform: scale(1); opacity: 1; }
-}
-/* --- Centering Styles for the Home Page --- */
-
-/* Get the container to take up the space below the header */
-.center-content {
-    /* Use Flexbox for easy centering */
-    display: flex;
-    flex-direction: column; /* Stack logo and text vertically */
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    text-align: center;
-    
-    /* Calculate height to fill the screen (100% of viewport height - header height) */
-    /* **NOTE:** You may need to adjust the 80px based on your actual header height. */
-    min-height: calc(100vh - 80px); 
-    padding-top: 20px; /* Small buffer from the header */
+@keyframes pulseGlow {
+    0%, 100% { text-shadow: 0 0 4px rgba(255, 112, 67, 0.4); transform: scale(1); }
+    50% { text-shadow: 0 0 12px rgba(255, 112, 67, 0.6); transform: scale(1.03); }
 }
 
-/* Style for the Logo */
-.logo-center {
-    /* Adjust this width for the size you want the logo to appear */
-    width: 500px; 
-    height: auto;
-    margin-bottom: 25px; /* Space between logo and text */
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
 }
-
-/* Style for the Welcome Text */
-.welcome-title {
-    font-size: 2.5em; /* Make the text large and prominent */
-    color: #333; /* Dark color for readability */
-    letter-spacing: 2px;
-    font-weight: 700;
-}
-/* 1. Making the Logo Small - REVISED */
-.small-logo {
-    max-width: 500px; /* Much smaller width, adjust as needed */
-    height: auto; /* Maintain aspect ratio */
-    display: block; /* Essential for 'margin: auto' to center */
-    margin: 30px auto; /* Centers the logo horizontally with space */
-    /* If the logo itself is very high resolution, you might need to manage its actual pixel dimensions too. */
-}
-
-/* 2. Setting up the Photo Queue Container */
-.photo-queue-container {
-    display: flex;
-    justify-content: center; /* Center the queue */
-    align-items: center; /* Vertically center items in the container */
-    overflow: hidden; /* Important for animation or clipping */
-    perspective: 800px; /* Key for the 3D side-view effect */
-    height: 180px; /* Increased height to give photos more room */
-    margin-top: 20px;
-    position: relative; /* For absolute positioning of elements if needed */
-}
-
-/* 3. Styling the Photo Queue Items (the "photos") - REVISED */
-.photo-queue-item {
-    width: 120px; /* Width of each "photo" */
-    height: 90px; /* Height of each "photo" */
-    background-color: #f0f0f0; /* Light background for placeholder */
-    border: 1px solid #aaa; /* Subtle border */
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* Soft shadow for depth */
-    margin: 0 10px; /* Space between photos */
-    display: flex; /* To center potential content inside */
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8em; /* Smaller text if you add labels */
-    color: #555;
-    /* Apply a slight rotation for the side-view effect */
-    transform: rotateY(15deg) scale(0.9); /* Reduced rotation, slight scale down */
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out; /* Smooth transition */
-    flex-shrink: 0; /* Prevent items from shrinking */
-    /* To make them look like photos, you'd eventually replace background-color
-       with 'background-image: url("path/to/image.jpg"); background-size: cover;' */
-}
-
-/* 4. Adding Animation (More refined conceptual CSS Animation) */
-/* This will make the queue items continuously slide from right to left */
-.photo-queue-container {
-    /* Define an animation name */
-    animation: slide-queue 20s infinite linear; /* Slower, continuous animation */
-}
-
-/* Keyframes for the sliding animation */
-@keyframes slide-queue {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-100%); } /* Adjust based on number of items and container width */
-}
-
-/* You might want to animate individual items within the queue,
-   or duplicate items to create a seamless loop effect.
-   For simplicity, the above animates the whole container.
-   If you want individual items to "move into view", you would
-   need JavaScript or more complex CSS keyframe management for each item. */
