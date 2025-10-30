@@ -1,0 +1,175 @@
+extends layout
+
+block content
+  style.
+    body {
+      background: #f2f6fc;
+      font-family: 'Poppins', sans-serif;
+    }
+    .dashboard-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding: 20px;
+    }
+    .top-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #0d6efd;
+      color: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    .top-card img {
+      height: 100px;
+      border-radius: 10px;
+    }
+    .vehicle-details {
+      flex: 1;
+      margin-left: 20px;
+    }
+    .vehicle-details h2 {
+      margin: 0;
+    }
+    .content-section {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+    }
+    .timeline, .health-widget {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .timeline h3, .health-widget h3 {
+      color: #0d6efd;
+      margin-bottom: 15px;
+    }
+    .timeline ul {
+      list-style: none;
+      padding: 0;
+      position: relative;
+    }
+    .timeline li {
+      margin-bottom: 15px;
+      padding-left: 20px;
+      border-left: 3px solid #0d6efd;
+      position: relative;
+    }
+    .timeline li::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -7px;
+      width: 12px;
+      height: 12px;
+      background: #0d6efd;
+      border-radius: 50%;
+    }
+    .timeline span {
+      display: block;
+      font-weight: bold;
+      color: #0d6efd;
+    }
+    .chart-container {
+      width: 100%;
+      height: 250px;
+    }
+    .recommendations {
+      background: #e9f7ef;
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 5px solid #198754;
+      margin-top: 20px;
+    }
+    .bottom-buttons {
+      text-align: center;
+      margin-top: 25px;
+    }
+    .btn {
+      background: #0d6efd;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 6px;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #0b5ed7;
+    }
+
+  // ===== TOP VEHICLE INFO CARD =====
+  .dashboard-container
+    .top-card
+      img(src='/images/preventive.png', alt='Vehicle')
+      .vehicle-details
+        h2 Maruti Swift 2020
+        p Registration No: TN 09 CD 5678
+        p Last Service: 05 Oct 2025
+        p Mileage: 36,200 km
+      .vehicle-status
+        h4(style='margin:0') 🟢 Excellent Condition
+
+  // ===== MAIN CONTENT =====
+  .content-section
+    // LEFT SIDE — Timeline + Recommendations
+    .timeline
+      h3 Service History
+      ul
+        li
+          span 2025-01-10
+          | Oil Change — Completed successfully.
+        li
+          span 2025-04-18
+          | Tire Replacement — Installed new MRF tyres.
+        li
+          span 2025-07-30
+          | Battery Check — Needs replacement soon.
+
+      .recommendations
+        h3 Maintenance Recommendations
+        ul
+          li Replace battery within 2 weeks.
+          li Next oil change due in 2000 km.
+          li Tyre rotation advised at 40,000 km.
+
+    // RIGHT SIDE — Health Widget with Chart
+    .health-widget
+      h3 Vehicle Health Report
+      .chart-container
+        canvas(id='healthChart')
+
+      ul(style='margin-top:15px')
+        li Engine: ✅ Excellent (92%)
+        li Battery: ⚠ Weak (75%)
+        li Brakes: ✅ Good (88%)
+        li Tyres: 🟡 Replace soon (70%)
+        li Coolant: ✅ Normal (90%)
+
+  // ===== BOTTOM BUTTONS =====
+  .bottom-buttons
+    a.btn(href='/') ← Back to Dashboard
+    a.btn(href='/booking') 📅 Book New Service
+
+  // ===== CHART SCRIPT =====
+  script(src='https://cdn.jsdelivr.net/npm/chart.js')
+  script.
+    const ctx = document.getElementById('healthChart');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Engine', 'Battery', 'Brakes', 'Tyres', 'Coolant'],
+        datasets: [{
+          label: 'Health Status (%)',
+          data: [92, 75, 88, 70, 90],
+          backgroundColor: ['#198754', '#ffc107', '#0d6efd', '#fd7e14', '#20c997']
+        }]
+      },
+      options: {
+        scales: { y: { beginAtZero: true, max: 100 } }
+      }
+    });

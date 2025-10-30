@@ -6,10 +6,12 @@ var logger = require('morgan');
 
 var indexRouter = require('./app_server/routes/index');
 var usersRouter = require('./app_server/routes/users');
+var detailsRouter = require('./app_server/routes/details'); // ✅ Added this line
 
 var app = express();
 
 app.use(express.static(path.join(__dirname, 'public')));
+
 // view engine setup
 app.set('views', path.join(__dirname, 'app_server', 'views'));
 app.set('view engine', 'jade');   // Jade is now called Pug, but 'jade' alias often works
@@ -19,9 +21,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
+// ✅ Route registrations
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/details', detailsRouter); // ✅ Added this line
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -39,4 +42,3 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
