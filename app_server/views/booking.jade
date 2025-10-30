@@ -79,26 +79,28 @@ block content
         // --- SECTION 3: APPOINTMENT TIME & NOTES ---
         h2.h4.text-primary.mb-4 Preferred Time
         .row.g-4.mb-5
-            // Preferred Date
-            .col-md-6
-              label.form-label(for='preferredDate') Preferred Date
-              input.form-control#preferredDate(type='date', name='preferredDate', required)
+          // Preferred Date
+          .col-md-6
+            label.form-label(for='preferredDate') Preferred Date
+            // Changed type='date' to type='text' and added a placeholder to match the visual
+            // In a real application, you might use a datepicker JS library for better UI/UX.
+            input.form-control#preferredDate(type='text', name='preferredDate', placeholder='mm/dd/yyyy', required) 
+          
+          // Preferred Time Slot
+          .col-md-6
+            label.form-label(for='preferredTimeSlot') Preferred Time Slot
+            select.form-select#preferredTimeSlot(name='preferredTimeSlot', required)
+              option(value='') -- Select Time Slot --
+              option(value='09:00-11:00') 09:00 AM - 11:00 AM
+              option(value='11:00-13:00') 11:00 AM - 01:00 PM
+              option(value='14:00-16:00') 02:00 PM - 04:00 PM
+              option(value='16:00-18:00') 04:00 PM - 06:00 PM
+            .form-text Choose a 2-hour window.
 
-            // Preferred Time Slot
-            .col-md-6
-              label.form-label(for='preferredTimeSlot') Preferred Time Slot
-              select.form-select#preferredTimeSlot(name='preferredTimeSlot', required)
-                option(value='') -- Select Time Slot --
-                option(value='09:00-11:00') 09:00 AM - 11:00 AM
-                option(value='11:00-13:00') 11:00 AM - 01:00 PM
-                option(value='14:00-16:00') 02:00 PM - 04:00 PM
-                option(value='16:00-18:00') 04:00 PM - 06:00 PM
-              .form-text Choose a 2-hour window.
-
-            // Special Notes
-            .col-12
-              label.form-label(for='specialNotes') Special Requests/Notes (Optional)
-              textarea.form-control#specialNotes(name='specialNotes', rows='3', placeholder='e.g., "Please check the front brake pads" or "Requesting pick-up service"')
+          // Special Notes
+          .col-12
+            label.form-label(for='specialNotes') Special Requests/Notes (Optional)
+            textarea.form-control#specialNotes(name='specialNotes', rows='3', placeholder='e.g., "Please check the front brake pads" or "Requesting pick-up service"')
 
         // --- SUBMIT BUTTON ---
         .d-grid

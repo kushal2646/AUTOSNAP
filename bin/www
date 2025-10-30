@@ -8,6 +8,10 @@ var app = require('../app');
 var debug = require('debug')('autosnap:server');
 var http = require('http');
 
+// 🌟 CRITICAL FIX: 1. Import the database connection promise
+// Adjust the path if your 'models' directory is not directly inside '../app_server'
+const { dbConnectionPromise } = require('../app_server/models/db');
+
 /**
  * Get port from environment and store in Express.
  */
@@ -25,9 +29,22 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+// 🌟 CRITICAL FIX: 2. Wait for the database connection before starting the server
+dbConnectionPromise
+  .then(() => {
+    // Database is connected! Now it's safe to start the server.
+    console.log('✅ Database connected. Starting web server...');
+    
+    server.listen(port);
+    server.on('error', onError);
+    server.on('listening', onListening);
+  })
+  .catch((err) => {
+    // Handle the case where the database connection failed entirely
+    console.error('❌ FATAL ERROR: Database connection failed. Shutting down.', err);
+    process.exit(1);
+  });
+
 
 /**
  * Normalize a port into a number, string, or false.
@@ -70,6 +87,7 @@ function onError(error) {
       break;
     case 'EADDRINUSE':
       console.error(bind + ' is already in use');
+      console.error('Check if another instance of your app is already running.');
       process.exit(1);
       break;
     default:
@@ -87,4 +105,5 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+  console.log(`Web server listening on port ${addr.port}`); // Added log for clarity
 }
