@@ -1,7 +1,8 @@
 // db.js
 const mongoose = require('mongoose');
 
-const dbURI = 'mongodb://localhost/autosnap';
+const dbURI = process.env.MONGO_URI || 'mongodb://localhost/autosnap';
+
 
 // Connection options (Mongoose 6+ handles most defaults well)
 const options = {};
